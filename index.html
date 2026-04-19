@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compressor Simulator</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <main class="container">
+    <h1>Reciprocating Compressor Simulator</h1>
+
+    <section class="panel">
+      <h2>Parameters</h2>
+
+      <h3>Boundary conditions</h3>
+      <div class="grid">
+        <label>Inlet Temperature (K) <input id="Tsuc" type="number" value="300" step="1" /></label>
+        <label>Inlet Pressure (psi) <input id="Psuc" type="number" value="14.7" step="0.0001" /></label>
+        <label>Outlet Pressure (psi) <input id="Pdis" type="number" value="175" step="0.0001" /></label>
+      </div>
+
+      <h3>Piston-cylinder parameters</h3>
+      <div class="grid">
+        <label>RPM <input id="RPM" type="number" value="1902" step="1" /></label>
+        <label>Cylinder length (m) <input id="kinL" type="number" value="0.040005" step="0.000001" /></label>
+        <label>Crank radius (m) <input id="kinA" type="number" value="0.0379984" step="0.000001" /></label>
+        <label>Bore diameter (m) <input id="kinBore" type="number" value="0.08001" step="0.000001" /></label>
+        <label>Volume clearance (m³) <input id="kinVc" type="number" value="0.0000100888" step="0.0000000001" /></label>
+      </div>
+
+      <h3>Suction parameters</h3>
+      <div class="grid">
+        <label>No. of holes <input id="suctionHolefactor" type="number" value="12" step="1" min="1" /></label>
+        <label>Hole area (m³) <input id="suctionAp" type="number" value="0.0000127235" step="0.000000001" /></label>
+        <label>Valve diameter (m) <input id="suctionD" type="number" value="0.009" step="0.000001" /></label>
+        <label>Discharge coefficient <input id="suctionCD" type="number" value="0.93" step="0.01" min="0" max="1.5" /></label>
+      </div>
+
+      <h3>Discharge parameters</h3>
+      <div class="grid">
+        <label>No. of holes <input id="dischargeHolefactor" type="number" value="6" step="1" min="1" /></label>
+        <label>Hole area (m³) <input id="dischargeAp" type="number" value="0.0000127235" step="0.000000001" /></label>
+        <label>Valve diameter (m) <input id="dischargeD" type="number" value="0.009" step="0.000001" /></label>
+        <label>Discharge coefficient <input id="dischargeCD" type="number" value="0.953" step="0.01" min="0" max="1.5" /></label>
+      </div>
+
+      <h3>Simulation</h3>
+      <div class="grid">
+        <label>Cycles <input id="nCycles" type="number" value="6" step="1" min="1" /></label>
+      </div>
+
+      <h3>Graphs to display</h3>
+      <div class="checks">
+        <label><input type="checkbox" value="pressure" checked /> Pressure</label>
+        <label><input type="checkbox" value="temperature" checked /> Temperature</label>
+        <label><input type="checkbox" value="suction_lift" checked /> Suction Lift</label>
+        <label><input type="checkbox" value="discharge_lift" checked /> Discharge Lift</label>
+      </div>
+
+      <div class="actions">
+        <button id="runBtn">Run Simulation</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Saved presets</h2>
+      <div class="preset-row">
+        <input id="presetName" type="text" placeholder="Preset name" />
+        <button id="savePresetBtn">Save preset</button>
+        <select id="presetSelect"><option value="">Select preset</option></select>
+        <button id="loadPresetBtn">Load</button>
+        <button id="deletePresetBtn">Delete</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Results</h2>
+      <p><strong>Average flow rate:</strong> <span id="avgFlow">-</span> ft³/min</p>
+      <p><strong>Estimated tank fill time:</strong> <span id="fillTime">-</span></p>
+      <div id="charts" class="chart-grid"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f6f7fb;
+  margin: 0;
+}
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+.panel {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+}
+input, select, button {
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+}
+button {
+  cursor: pointer;
+  background: #111827;
+  color: white;
+  border: none;
+}
+.checks {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 0.5rem 0;
+}
+.checks label {
+  flex-direction: row;
+  align-items: center;
+}
+.preset-row {
+  display: grid;
+  grid-template-columns: 1.2fr auto 1fr auto auto;
+  gap: 0.5rem;
+}
+.chart-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+.chart-figure {
+  margin: 0;
+  padding: 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  min-height: 350px;
+}
+.chart-figure figcaption {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
