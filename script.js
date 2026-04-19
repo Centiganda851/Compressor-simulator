@@ -264,6 +264,8 @@ function simulateInBrowser(config) {
   const tEnd = n.nCycles * period;
   const count = n.nCycles * n.samplesPerCycle;
   const dt = tEnd / (count - 1);
+  const rk4Substeps = 8;
+  const dtInternal = dt / rk4Substeps;
 
   const V0 = geom(0, kin).V;
   const m0 = Math.max((bc.Psuc * V0) / (gas.Rspec * bc.Tsuc), 1e-6);
@@ -297,8 +299,10 @@ function simulateInBrowser(config) {
     }
 
     if (i < count - 1) {
-      x = rk4Step(t, x, dt, model);
-      t += dt;
+      for (let j = 0; j < rk4Substeps; j += 1) {
+        x = rk4Step(t, x, dtInternal, model);
+        t += dtInternal;
+      }
     }
   }
 

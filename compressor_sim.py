@@ -300,7 +300,7 @@ def simulate(config: Dict[str, Any] | None = None) -> Dict[str, Any]:
             mdot_d = orifice_mdot(p_cyl[i], T[i], bc.Pdis, Aeff_d, d.CD, gas)
             vdot_d[i] = mdot_d * gas.Rspec * T[i] / p_cyl[i]
 
-    total_flow = np.trapz(vdot_d, t)
+    total_flow = np.trapezoid(vdot_d, t)
     average_flow_rate = float(total_flow / t[-1])
     time_estimate = float(0.22712461 / average_flow_rate) if average_flow_rate > 0 else float("inf")
 
